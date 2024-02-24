@@ -1,13 +1,15 @@
-import addOnUISdk from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
+import AddOnSdk from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
 import { fetchAltText, uploadImg } from "./alt-text.js";
 
-addOnUISdk.ready.then(() => {
-    console.log("addOnUISdk is ready for use.");
+AddOnSdk.ready.then(() => {
+    console.log("AddOnSDK is ready for use.");
     const clickMeButton = document.getElementById("clickMe");
     
+    grabImage();
+
     clickMeButton.addEventListener("click", async () => {
-        grabImage();
         clickMeButton.innerHTML = "Clicked";
+        grabImage();
         const selectedFile = document.getElementById("myFile").files[0];
         const url = await uploadImg(selectedFile);
         let data = await fetchAltText(url);
@@ -16,7 +18,7 @@ addOnUISdk.ready.then(() => {
         displayText(text.text);
     });
 
-  console.log("addOnUISdk is ready for use.");
+  console.log("AddOnSDK is ready for use.");
 
   clickMeButton.disabled = false;
 
