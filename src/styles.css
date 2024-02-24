@@ -1,5 +1,7 @@
+*{
+    margin:0;
+}
 .container {
-    margin: 24px;
     display: flex;
     flex-direction: column;
 }
@@ -12,6 +14,7 @@ button {
     color: rgb(255, 255, 255);
     font-family: sans-serif;
     height: 32px;
+    margin: 10px;
 }
 
 button:disabled {
@@ -22,4 +25,10 @@ button:disabled {
 button:not([disabled]):hover {
     background-color: rgb(64, 70, 202);
     cursor: pointer;
+}
+
+#canvas{
+    padding: 10px;
+    width: 100vw;
+
 }

@@ -4,16 +4,18 @@ await AddOnSdk.ready;
 
 //let test = document.getElementById("anchor").href;
 
-// const sdk = AddOnSdk.app;
+// 
 // let hi = sdk.document.addImage()
 
 AddOnSdk.ready.then(() => {
   grabImage();
+  
   console.log("addOnUISdk is ready for use.");
 
   const clickMeButton = document.getElementById("clickMe");
   clickMeButton.addEventListener("click", () => {
-    clickMeButton.innerHTML = "Clicked";
+    grabImage();
+    logMetadata();
   });
 
   clickMeButton.disabled = false;
@@ -39,6 +41,30 @@ AddOnSdk.ready.then(() => {
     }
   }
 
+  //grab data
+  async function logMetadata() {
+    try {
+      const pages = (await AddOnSdk.app.document.getPagesMetadata({
+                              range: AddOnSdk.constants.Range.specificPages,
+                              pageIds: [
+                                  "7477a5e7-02b2-4b8d-9bf9-f09ef6f8b9fc",
+                                  "d45ba3fc-a3df-4a87-80a5-655e5f8f0f96"
+                              ]
+                          }));
+      for (const page of pages) {
+        console.log("Page id: ", page.id);
+        console.log("Page title: ", page.title);
+        console.log("Page size: ", page.size);
+        console.log("Page has premium content: ", page.hasPremiumContent);
+        console.log("Page has timelines: ", page.hasTemporalContent);
+        console.log("Pixels per inch: ", page.pixelsPerInch);
+      }
+    }
+    catch(error) {
+      console.log("Failed to get metadata:", error);
+    }
+  
+  }
   // Add image via blob to the current page
   // async function addImageFromBlob(blob) {
   //   try {
