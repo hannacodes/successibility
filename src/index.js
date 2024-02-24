@@ -15,7 +15,6 @@ AddOnSdk.ready.then(() => {
   const clickMeButton = document.getElementById("clickMe");
   clickMeButton.addEventListener("click", () => {
     grabImage();
-    logMetadata();
   });
 
   clickMeButton.disabled = false;
