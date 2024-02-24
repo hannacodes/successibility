@@ -1,0 +1,34 @@
+*{
+    margin:0;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    background-color: rgb(82, 88, 228);
+    border-color: rgb(82, 88, 228);
+    border-radius: 16px;
+    border-style: solid;
+    color: rgb(255, 255, 255);
+    font-family: sans-serif;
+    height: 32px;
+    margin: 10px;
+}
+
+button:disabled {
+    background-color: rgb(177, 177, 177);
+    border-color: rgb(177, 177, 177);
+}
+
+button:not([disabled]):hover {
+    background-color: rgb(64, 70, 202);
+    cursor: pointer;
+}
+
+#canvas{
+    padding: 10px;
+    width: 100vw;
+
+}
