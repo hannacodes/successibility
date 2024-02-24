@@ -2,11 +2,6 @@ import AddOnSdk from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
 
 await AddOnSdk.ready;
 
-//let test = document.getElementById("anchor").href;
-
-// 
-// let hi = sdk.document.addImage()
-
 AddOnSdk.ready.then(() => {
   grabImage();
   
