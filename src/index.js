@@ -5,8 +5,6 @@ await AddOnSdk.ready;
 AddOnSdk.ready.then(() => {
   grabImage();
 
-  console.log("addOnUISdk is ready for use.");
-
   const clickMeButton = document.getElementById("clickMe");
   clickMeButton.addEventListener("click", () => {
     grabImage();
@@ -28,7 +26,6 @@ AddOnSdk.ready.then(() => {
       renditions.forEach((rendition) => {
         const image = document.querySelector("#canvas");
         image.src = URL.createObjectURL(rendition.blob);
-        document.body.appendChild(image);
       });
     } catch (error) {
       console.log("ERROR" + error);
