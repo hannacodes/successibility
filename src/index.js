@@ -6,7 +6,7 @@ AddOnSdk.ready.then(() => {
     console.log("AddOnSDK is ready for use.");
     const refreshButton = document.getElementById("refresh");
     const altTextButton = document.getElementById("altTxtBtn");
-    const colorBlindButton = document.getElementById("btnLoad")
+    const colorBlindButton = document.getElementById("btnLoad"); 
 
     grabImage();
     refreshButton.addEventListener("click", async () => {
@@ -20,6 +20,7 @@ AddOnSdk.ready.then(() => {
     colorBlindButton.addEventListener("click", async () => {
         let renditions = await getRenditions();
         main(renditions[0].blob);
+
     });
 
     console.log("AddOnSDK is ready for use.");
@@ -69,11 +70,15 @@ AddOnSdk.ready.then(() => {
     var colorContrast = document.querySelector("#colorContrast");
 
     firstColor.addEventListener("input", () => {
-        calculateColorContrast();
+        var colorA = firstColor.value;
+        var colorB = secondColor.value;
+        calculateColorContrast(colorA, colorB);
     });
 
     secondColor.addEventListener("input", () => {
-        calculateColorContrast();
+        var colorA = firstColor.value;
+        var colorB = secondColor.value;
+        calculateColorContrast(colorA, colorB);
     });
 
     var hex2rgb = function (hex) {
@@ -111,9 +116,7 @@ AddOnSdk.ready.then(() => {
     const BLUE = 0.0722;
 
     const GAMMA = 2.4;
-    function calculateColorContrast() {
-        var colorA = firstColor.value;
-        var colorB = secondColor.value;
+    function calculateColorContrast(colorA, colorB) {
         console.log(colorA);
         console.log(colorB);
 
@@ -126,10 +129,6 @@ AddOnSdk.ready.then(() => {
         var contrast = (brightest + 0.05) / (darkest + 0.05);
 
         console.log(contrast);
-
-        // min: 0
-        // max: 21
-        colorContrast.innerHTML = contrast;
 
         return contrast;
     }

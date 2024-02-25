@@ -16,6 +16,13 @@ const buildPalette = (colorsList) => {
     const orderedByColor = orderByLuminance(colorsList);
     const hslColors = convertRGBtoHSL(orderedByColor);
 
+    var length = 4;
+    var paletteList = Array(length).fill(0);
+    var protonopiaList = Array(length).fill(0);
+    var deuteranopiaList = Array(length).fill(0);
+    var tritanopiaList = Array(length).fill(0);
+
+
     for (let i = 0; i < orderedByColor.length; i++) {
         const hexColor = rgbToHex(orderedByColor[i]);
 
@@ -29,10 +36,6 @@ const buildPalette = (colorsList) => {
                 orderedByColor[i - 1]
             );
 
-            // if the distance is less than 120 we ommit that color
-            if (difference < 120) {
-                continue;
-            }
         }
 
         var modP = [.7465, .2535, 1.273463, -0.073894],
@@ -42,6 +45,11 @@ const buildPalette = (colorsList) => {
         var protonopia = "#" + convert(hexColor, modP);
         var deuteranopia = "#" + convert(hexColor, modD);
         var tritanopia = "#" + convert(hexColor, modT);
+        
+        paletteList[i] = hexColor;
+        protonopiaList[i] = protonopia;
+        deuteranopiaList[i] = deuteranopia;
+        tritanopiaList[i] = tritanopia;
 
         // create the div and text elements for both colors & append it to the document
         const colorElement = document.createElement("div");
@@ -74,6 +82,9 @@ const buildPalette = (colorsList) => {
         //complementaryContainer.appendChild(complementaryElement);
         //}
     }
+
+    var palettesList = {paletteList, protonopiaList, deuteranopiaList, tritanopiaList};
+    return palettesList
 
 };
 
@@ -388,6 +399,9 @@ function convert(hex, mod) {
     rgbG = Math.pow(rgbG, 1 / 2.2);
     rgbB = Math.pow(rgbB, 1 / 2.2);
 
+    if (rgbR > 255) rgbR = 255;
+    if (rgbG > 255) rgbG = 255;
+    if (rgbB > 255) rgbB = 255;
     //back to hex
     r = Math.ceil(rgbR).toString(16);
     g = Math.ceil(rgbG).toString(16);
@@ -417,26 +431,102 @@ export const main = async (image) => {
     const ctx = canvas.getContext("2d");
     img.addEventListener("load", () => {
         ctx.drawImage(img, 0, 0)
+
+        /**
+         * getImageData returns an array full of RGBA values
+         * each pixel consists of four values: the red value of the colour, the green, the blue and the alpha
+         * (transparency). For array value consistency reasons,
+         * the alpha is not from 0 to 1 like it is in the RGBA of CSS, but from 0 to 255.
+         */
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+        // Convert the image data to RGB values so its much simpler
+        const rgbArray = buildRgb(imageData.data);
+
+        /**
+         * Color quantization
+         * A process that reduces the number of colors used in an image
+         * while trying to visually maintin the original image as much as possible
+         */
+        const quantColors = quantization(rgbArray, 0);
+
+        // Create the HTML structure to show the color palette
+        var palettesList = buildPalette(quantColors);
+        
+        var paletteContrast = document.getElementById("paletteContrast");
+        var protonopiaContrast = document.getElementById("protonopiaContrast");
+        var deuteranopiaContrast = document.getElementById("deuteranopiaContrast");
+        var tritanopiaContrast = document.getElementById("tritanopiaContrast");
+
+        let paletteColors = palettesList.paletteList; 
+        var protonopiaColors = palettesList.protonopiaList;
+        var deuteranopiaColors = palettesList.deuteranopiaList;
+        var tritanopiaColors = palettesList.tritanopiaList;
+
+        paletteContrast.innerHTML = calculateAverageContrast(paletteColors);
+        protonopiaContrast.innerHTML = calculateAverageContrast(protonopiaColors);
+        deuteranopiaContrast.innerHTML = calculateAverageContrast(deuteranopiaColors);
+        tritanopiaContrast.innerHTML = calculateAverageContrast(tritanopiaColors);
     
-    /**
-     * getImageData returns an array full of RGBA values
-     * each pixel consists of four values: the red value of the colour, the green, the blue and the alpha
-     * (transparency). For array value consistency reasons,
-     * the alpha is not from 0 to 1 like it is in the RGBA of CSS, but from 0 to 255.
-     */
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        function calculateAverageContrast(paletteColors){
+            var totalContrast = 0; 
+            let paletteLength = paletteColors.length; 
+            for (var i = 0; i < (paletteLength-1); i++){
+                for (var j = (i+1); j < paletteLength; j++){
+                    var colorA = paletteColors[i]; 
+                    var colorB = paletteColors[j]; 
+                    let contrast = calculateColorContrast(colorA, colorB); 
+                    totalContrast += contrast; 
+                }
+            }
+            var averageContrast = totalContrast / paletteLength; 
+    
+            return averageContrast; 
+        }
 
-    // Convert the image data to RGB values so its much simpler
-    const rgbArray = buildRgb(imageData.data);
+        function hex2rgb (hex) {
+            var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result
+                ? {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16),
+                }
+                : null;
+        };
 
-    /**
-     * Color quantization
-     * A process that reduces the number of colors used in an image
-     * while trying to visually maintin the original image as much as possible
-     */
-    const quantColors = quantization(rgbArray, 0);
+        function calculateLuminance(hexColor) {
+            var rgbColor = hex2rgb(hexColor);
+            var r = rgbColor.r;
+            var g = rgbColor.g;
+            var b = rgbColor.b;
+            var a = [r, g, b].map((v) => {
+                v /= 255;
+                return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+            });
 
-    // Create the HTML structure to show the color palette
-    buildPalette(quantColors);
-});
+            return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+        }
+        /* 
+          To calculate contrast, calculate luminance in RGB colorspace 
+          L = 0.2126 * R + 0.7152 * G + 0.0722 * B
+          if RGB <= 0.03928 then RGB/12.92 else ((RsRGB+0.055)/1.055) ^ 2.4
+          2.4 = GAMMA
+      
+          contrast ratio = (L1 + 0.05) / (L2 + 0.05)
+          */
+    
+        function calculateColorContrast(colorA, colorB) {
+    
+            var luminanceA = calculateLuminance(colorA);
+            var luminanceB = calculateLuminance(colorB);
+    
+            var brightest = Math.max(luminanceA, luminanceB);
+            var darkest = Math.min(luminanceA, luminanceB);
+    
+            var contrast = (brightest + 0.05) / (darkest + 0.05);
+    
+            return contrast;
+        }
+    });
 };
