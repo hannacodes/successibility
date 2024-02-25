@@ -1,19 +1,36 @@
 import AddOnSdk from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
-import { fetchAltText, uploadImg, uploadImgByURL } from "./alt-text.js";
+import { fetchAltText, uploadImg } from "./alt-text.js";
+import { main } from "./palette.js"
 
 AddOnSdk.ready.then(() => {
-  console.log("AddOnSDK is ready for use.");
-  const refreshButton = document.getElementById("refresh");
-  const altTextButton = document.getElementById("altTxtBtn");
+    console.log("AddOnSDK is ready for use.");
+    const refreshButton = document.getElementById("refresh");
+    const altTextButton = document.getElementById("altTxtBtn");
+    const colorBlindButton = document.getElementById("btnLoad"); 
 
   grabImage();
   refreshButton.addEventListener("click", async () => {
     grabImage();
   });
 
-  altTextButton.addEventListener("click", async () => {
-    await generateAltText();
-  });
+    altTextButton.addEventListener("click", async () => {
+        await generateAltText();
+    });
+    
+    colorBlindButton.addEventListener("click", async () => {
+        let renditions = await getRenditions();
+        main(renditions[0].blob);
+
+        let originalColors = document.getElementById("originalColors"); 
+        let protonopiaColors = document.getElementById("protonopiaColors"); 
+        let deuteranopiaColors = document.getElementById("deuteranopiaColors"); 
+        let tritanopiaColors = document.getElementById("tritanopiaColors"); 
+
+        originalColors.innerHTML = "Original Colors";
+        protonopiaColors.innerHTML = "Protonopia (Red Deficient)"; 
+        deuteranopiaColors.innerHTML = "Deuteranopia (Green Deficient)"; 
+        tritanopiaColors.innerHTML = "Tritanopia (Blue Deficient)"; 
+    });
 
   console.log("AddOnSDK is ready for use.");
 
@@ -36,7 +53,7 @@ AddOnSdk.ready.then(() => {
     async function generateAltText() {
         displayText("loading...")
         let renditions = await getRenditions();
-        const dataurl = await uploadImg(renditions[0].blob)
+        const dataurl = (await uploadImg(renditions[0].blob))
         //console.log(document.getElementById("canvas").src);
         let data = await fetchAltText(dataurl);
         let text = data.captionResult

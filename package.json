@@ -25,6 +25,8 @@
         "@adobe/ccweb-add-on-sdk-types": "^1.3.0"
     },
     "dependencies": {
-        "@spectrum-icons/express": "^3.0.0-alpha.15"
+        "@spectrum-icons/express": "^3.0.0-alpha.15",
+        "color-blind": "^0.1.3",
+        "onecolor": "^4.1.0"
     }
 }
