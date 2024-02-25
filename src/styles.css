@@ -1,94 +1,152 @@
-*{
-    margin:0;
+* {
+    margin: 0;
+    font-family: "Assistant", sans-serif;
 }
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 700,
+        'GRAD' 200,
+        'opsz' 24
+}
+
+/* // <uniquifier>: Use a uniquifier for the class name
+// <weight>: Use a value from 200 to 800 */
+
+.assistant-200 {
+    font-family: "Assistant", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
+
 .container {
     display: flex;
     flex-direction: column;
 }
 
-button {
+.special button{
     background-color: rgb(82, 88, 228);
     border-color: rgb(82, 88, 228);
     border-radius: 16px;
-    border-style: solid;
     color: rgb(255, 255, 255);
     font-family: sans-serif;
     height: 32px;
     margin: 5vw;
+    width: 90%;
 }
 
-button:disabled {
+#copy{
+    width: fit-content;
+    float: right;
+    margin-right: 10px;
+    font-size: 0.5em;
+}
+
+#copy:hover{
+    width: fit-content;
+    float: right;
+    margin-right: 10px;
+    font-size: 0.5em;
+    color: rgb(177, 177, 177);
+}
+.special button:disabled {
     background-color: rgb(177, 177, 177);
     border-color: rgb(177, 177, 177);
 }
 
-button:not([disabled]):hover {
+.special button:not([disabled]):hover {
     background-color: rgb(64, 70, 202);
     cursor: pointer;
 }
 
-#canvas{
+#canvas {
     width: 85vw;
     align-self: center;
-    border: 3px solid black;
 }
 
-h2{
+h2 {
     padding: 5vw 0px;
     margin: 0px 5vw;
-    color:darkred;
-    text-decoration: underline;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #222222;
+    font-family: "Assistant", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
 }
 
-.color{
+.color {
     margin: 3vw 0px;
-    width:30vw;
+    width: 30vw;
 }
 
-#colorBar{
-    margin: 2.5vw 5vw 0vw;
-    height: 2vw;
-    align-self: center;
-    border: 1px solid black;
-    background-color: green;
-}
-
-#colorsBox{
+#colorsBox {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
 }
 
-#singleColorBox{
+#singleColorBox {
     padding: 0px 8vw;
     display: flex;
     flex-direction: column;
 }
 
-#altTextBox{
+#altTextBox {
     display: flex;
     flex-direction: column;
 }
 
-#altTextBox label{
+#altTextBox label {
     padding: 0px 5vw;
     font-size: 1.2rem;
 }
 
-#altTextBox p{
+#altTextBox #alt-text {
     padding: 0px 5vw;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 1.1rem;
+    color:#222222
 }
 
 #slider{
     align-self: center;
-    margin: 0px 2vw;
+    margin: 0px 0vw;
+    margin-top: -8px;
+}
+
+#colorBar {
+    margin-top: 1vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    height: 5vw;
+    align-self: center;
+    border-radius: 2px;
+    background-image: linear-gradient(90deg, #FF4F4F, #FF4F4F, #FFF84F, #8AFF33, #8AFF33);
 }
 
 #progressBar{
-    margin: 5vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
 }
 
+
+#restext {
+    margin-left: 10px;
+}
+
+#restext a{
+    font-weight: 700;
+}
+
+h4 {
+    padding: 2vw;
+    font-style: bold;
+    margin-left: 2vw;
+    font-size: 1.15em;
+}
 
 #progressBar a{
     font-weight: 900;
@@ -97,24 +155,23 @@ h2{
 }
 
 .textContrast{
-    width: 15vw;
+    width: 100%;
     text-align: center;
-    display: flex;
-    flex-direction: row;
+    margin-bottom: 25px;
 }
 
 b{
     text-align: center;
 }
 
-#textFlexbox{
-    display: flex;
-    flex-direction: column;
-    justify-items: flex-end;
+#boxOne{
+    margin-left: 2vw;
+    float: left;
 }
 
 #boxTwo{
-    display: flex;
+    margin-right: 2vw;
     float: right;
+   
 }
 

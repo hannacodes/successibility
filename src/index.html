@@ -1,62 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="Get started with Add-on development using JavaScript"
-    />
+    <meta name="description" content="Get started with Add-on development using JavaScript" />
     <meta name="keywords" content="Adobe, Express, Add-On, JavaScript" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap" rel="stylesheet">
     <script type="module" src="index.js"></script>
     <title>Successibility</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <!-- 
             Please note that this document does not use the spectrum web components theme for Express.
             You may use "addOnUISdk.app.ui.theme" to get the current theme and style accordingly.
         
         -->
     <div class=".container">
-      <h2>Alt Text Generator</h2>
-      <div id="altTextBox">
-        <button id="altTxtBtn" disabled>Click for Alt Text</button>
-        <label>Canvas alt text: </label>
-        <p id="alt-text"></p>
-      </div>
+        <div id="altTextBox">
+            <h2>Alt Text Generator</h2>
+            <div>
+                <label for="alt-text">Canvas alt text: </label>
+                <!-- <a id="copy"><span class="material-symbols-outlined">
+            content_paste
+        </span></a> -->
+            </div>
+            <textarea type="text" value="" id="alt-text" disabled></textarea>
+            <span class="special"><button id="altTxtBtn" disabled>Click for Alt Text</button></span>
+        </div>
     </div>
 
     <div class="container">
-      <h2>Color Contrast</h2>
-      <div id="colorsBox">
-        <div id="singleColorBox">
-          <label>Color 1: </label>
-          <input type="color" id="firstColor" class="color" />
+        <h2>Color Contrast</h2>
+        <div id="colorsBox">
+            <div id="singleColorBox">
+                <label>Color 1: </label>
+                <input type="color" id="firstColor" class="color" value="#FF0000" />
+            </div>
+            <div id="singleColorBox">
+                <label>Color 2: </label>
+                <input type="color" id="secondColor" class="color" value="#FF0000" />
+            </div>
         </div>
-        <div id="singleColorBox">
-          <label>Color 2: </label>
-          <input type="color" id="secondColor" class="color" />
+        <h4 id="restext">Results:</h4>
+        <div id="progressBar">
+            <div class="textContrast">
+                <span id="boxOne">Low Contrast</span>
+                <span id="boxTwo">High Contrast</span>
+            </div>
+            <p id="colorBar"></p>
+            <div id="slider">
+                <a id="arrow"><span class="material-symbols-outlined">
+                    north
+                </span></a>
+            </div>
         </div>
-      </div>
-      <div id="progressBar">
-        <span class="textContrast">
-          <b id="textFlexBox">Low Contrast</b>
-          <span id="boxTwo" class="textContrast">
-            <b>High Contrast</b>
-          </span>
-        </span>
-        <p id="colorBar"></p>
-        <div id="slider">
-          <a id="arrow">^</a>
-        </div>
-      </div>
     </div>
 
     <div class="container">
-      <h2>Image</h2>
-      <img id="canvas" src="fill" alt="image" />
-      <button id="refresh" disabled>Reload</button>
+        <h2>Image</h2>
+        <img id="canvas" src="fill" alt="image" />
+
+        <span class="special"><button id="refresh" disabled>Reload</button></span>
     </div>
-  </body>
+</body>
+
 </html>

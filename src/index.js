@@ -33,15 +33,16 @@ AddOnSdk.ready.then(() => {
     }
   }
 
-  async function generateAltText() {
-    let renditions = await getRenditions();
-    const dataurl = await uploadImg(renditions[0].blob);
-    //console.log(document.getElementById("canvas").src);
-    let data = await fetchAltText(dataurl);
-    let text = data.captionResult;
-    console.log(text);
-    displayText(text.text);
-  }
+    async function generateAltText() {
+        displayText("loading...")
+        let renditions = await getRenditions();
+        const dataurl = await uploadImg(renditions[0].blob)
+        //console.log(document.getElementById("canvas").src);
+        let data = await fetchAltText(dataurl);
+        let text = data.captionResult
+        console.log(text);
+        displayText(text.text);
+    }
 
   async function getRenditions() {
     const renditionOptions = {
@@ -155,5 +156,5 @@ AddOnSdk.ready.then(() => {
 });
 
 function displayText(text) {
-  const txt = (document.getElementById("alt-text").innerText = text);
+    const txt = document.getElementById("alt-text").value = text;
 }
