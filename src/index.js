@@ -5,7 +5,7 @@ AddOnSdk.ready.then(() => {
     console.log("AddOnSDK is ready for use.");
     const refreshButton = document.getElementById("refresh");
     const altTextButton = document.getElementById("altTxtBtn");
-
+    const copyButton = document.getElementById("copy");
     grabImage();
     refreshButton.addEventListener("click", async () => {
         grabImage();
@@ -34,6 +34,7 @@ AddOnSdk.ready.then(() => {
     }
 
     async function generateAltText() {
+        displayText("loading...")
         let renditions = await getRenditions();
         const dataurl = await uploadImg(renditions[0].blob)
         //console.log(document.getElementById("canvas").src);
@@ -129,6 +130,6 @@ AddOnSdk.ready.then(() => {
 });
 
 function displayText(text) {
-    const txt = document.getElementById("alt-text").innerText = text;
+    const txt = document.getElementById("alt-text").value = text;
 }
 

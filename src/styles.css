@@ -1,52 +1,79 @@
-*{
-    margin:0;
+* {
+    margin: 0;
+    font-family: "Assistant", sans-serif;
 }
+
+/* // <uniquifier>: Use a uniquifier for the class name
+// <weight>: Use a value from 200 to 800 */
+
+.assistant-200 {
+    font-family: "Assistant", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
+
 .container {
     display: flex;
     flex-direction: column;
 }
 
-button {
+.special button{
     background-color: rgb(82, 88, 228);
     border-color: rgb(82, 88, 228);
     border-radius: 16px;
-    border-style: solid;
     color: rgb(255, 255, 255);
     font-family: sans-serif;
     height: 32px;
     margin: 5vw;
+    width: 90%;
 }
 
-button:disabled {
+#copy{
+    width: fit-content;
+    float: right;
+    margin-right: 10px;
+    font-size: 0.5em;
+}
+
+#copy:hover{
+    width: fit-content;
+    float: right;
+    margin-right: 10px;
+    font-size: 0.5em;
+    color: rgb(177, 177, 177);
+}
+.special button:disabled {
     background-color: rgb(177, 177, 177);
     border-color: rgb(177, 177, 177);
 }
 
-button:not([disabled]):hover {
+.special button:not([disabled]):hover {
     background-color: rgb(64, 70, 202);
     cursor: pointer;
 }
 
-#canvas{
+#canvas {
     width: 85vw;
     align-self: center;
-    border: 3px solid black;
 }
 
-h2{
+h2 {
     padding: 5vw 0px;
     margin: 0px 5vw;
-    color:darkred;
-    text-decoration: underline;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #222222;
+    font-family: "Assistant", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
 }
 
-.color{
+.color {
     margin: 3vw 0px;
-    width:30vw;
+    width: 30vw;
 }
 
-#colorBar{
+#colorBar {
     margin: 2vw 5vw 5vw;
     width: 80vw;
     height: 2vw;
@@ -55,28 +82,32 @@ h2{
     background-color: green;
 }
 
-#colorsBox{
+#colorsBox {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
 }
 
-#singleColorBox{
+#singleColorBox {
     padding: 0px 8vw;
     display: flex;
     flex-direction: column;
 }
 
-#altTextBox{
+#altTextBox {
     display: flex;
     flex-direction: column;
 }
 
-#altTextBox label{
+#altTextBox label {
     padding: 0px 5vw;
     font-size: 1.2rem;
 }
 
-#altTextBox p{
+#altTextBox #alt-text {
     padding: 0px 5vw;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 1.1rem;
+    color:#222222
 }
