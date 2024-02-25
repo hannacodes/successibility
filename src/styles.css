@@ -3,6 +3,14 @@
     font-family: "Assistant", sans-serif;
 }
 
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 700,
+        'GRAD' 200,
+        'opsz' 24
+}
+
 /* // <uniquifier>: Use a uniquifier for the class name
 // <weight>: Use a value from 200 to 800 */
 
@@ -73,14 +81,6 @@ h2 {
     width: 30vw;
 }
 
-#colorBar{
-    margin: 2.5vw 5vw 0vw;
-    height: 2vw;
-    align-self: center;
-    border: 1px solid black;
-    background-color: green;
-}
-
 #colorsBox {
     display: flex;
     flex-direction: row;
@@ -113,13 +113,40 @@ h2 {
 
 #slider{
     align-self: center;
-    margin: 0px 2vw;
+    margin: 0px 0vw;
+    margin-top: -8px;
+}
+
+#colorBar {
+    margin-top: 1vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    height: 5vw;
+    align-self: center;
+    border-radius: 2px;
+    background-image: linear-gradient(90deg, #FF4F4F, #FF4F4F, #FFF84F, #8AFF33, #8AFF33);
 }
 
 #progressBar{
-    margin: 5vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
 }
 
+
+#restext {
+    margin-left: 10px;
+}
+
+#restext a{
+    font-weight: 700;
+}
+
+h4 {
+    padding: 2vw;
+    font-style: bold;
+    margin-left: 2vw;
+    font-size: 1.15em;
+}
 
 #progressBar a{
     font-weight: 900;
@@ -128,24 +155,23 @@ h2 {
 }
 
 .textContrast{
-    width: 15vw;
+    width: 100%;
     text-align: center;
-    display: flex;
-    flex-direction: row;
+    margin-bottom: 25px;
 }
 
 b{
     text-align: center;
 }
 
-#textFlexbox{
-    display: flex;
-    flex-direction: column;
-    justify-items: flex-end;
+#boxOne{
+    margin-left: 2vw;
+    float: left;
 }
 
 #boxTwo{
-    display: flex;
+    margin-right: 2vw;
     float: right;
+   
 }
 
