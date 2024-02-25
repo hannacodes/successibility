@@ -1,32 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="description" content="Get started with Add-on development using JavaScript" />
-        <meta name="keywords" content="Adobe, Express, Add-On, JavaScript" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="styles.css">
-        <title>Get Started</title>
-    </head>
-    <body>
-        <!-- 
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Get started with Add-on development using JavaScript"
+    />
+    <meta name="keywords" content="Adobe, Express, Add-On, JavaScript" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="index.js"></script>
+    <title>Successibility</title>
+  </head>
+  <body>
+    <!-- 
             Please note that this document does not use the spectrum web components theme for Express.
             You may use "addOnUISdk.app.ui.theme" to get the current theme and style accordingly.
         
         -->
-        <div class="container">
-            <button id="altTxtBtn" disabled>Click for Alt Text</button>
-            <button id="refresh" disabled>Refresh</button>
-            
-            <!-- <input type="file" id="myFile" name="filename"> -->
-        
-            Canvas alt text:<p id="alt-text"></p>
+    <div class=".container">
+      <h2>Alt Text Generator</h2>
+      <button id="altTxtBtn" disabled>Click for Alt Text</button>
+      Canvas alt text:
+      <p id="alt-text"></p>
+    </div>
+
+    <div class=".container">
+      <h2>Color Contrast</h2>
+      <div id="colorsBox">
+        <div id="singleColorBox">
+          <label>Color 1: </label>
+          <input type="color" id="firstColor" class="color" />
         </div>
-        <img id="canvas"src="fill" alt="image">
-        <script type="module" src="index.js"></script>
-        <input type="color" id="firstColor">
-        <input type="color" id="secondColor">
-        <h2>Color Contrast</h2>
-        <p id="colorContrast">0</p>
-    </body>
+        <div id="singleColorBox">
+          <label>Color 2: </label>
+          <input type="color" id="secondColor" class="color" />
+        </div>
+      </div>
+      <p id="colorBar">0</p>
+    </div>
+
+    <div class="container">
+      <h2>Image</h2>
+      <img id="canvas" src="fill" alt="image" />
+      <button id="refresh" disabled>Reload</button>
+    </div>
+
+    <!-- <img id="canvas" src="fill" alt="image" /> -->
+    <!-- <button id="refresh" disabled>Refresh</button> -->
+
+    <!-- <input type="color" id="firstColor" />
+    <input type="color" id="secondColor" /> -->
+  </body>
 </html>

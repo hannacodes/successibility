@@ -26,7 +26,7 @@ AddOnSdk.ready.then(() => {
             renditions.forEach((rendition) => {
                 const image = document.querySelector("#canvas");
                 image.src = URL.createObjectURL(rendition.blob);
-                document.body.appendChild(image);
+                // document.body.appendChild(image);
             });
         } catch (error) {
             console.log("ERROR" + error);
