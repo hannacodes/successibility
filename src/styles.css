@@ -28,17 +28,15 @@ button:not([disabled]):hover {
 }
 
 #canvas{
-    width: 90vw;
+    width: 85vw;
     align-self: center;
-    align-content: center;
-    justify-content: center;
-    justify-self: center;
     border: 3px solid black;
 }
 
 h2{
-    padding: 5vw 0px 10px;
+    padding: 5vw 0px;
     margin: 0px 5vw;
+    color:darkred;
     text-decoration: underline;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -49,8 +47,10 @@ h2{
 }
 
 #colorBar{
-    margin: 2vw 8px 5vw;
-    width: auto;
+    margin: 2vw 5vw 5vw;
+    width: 80vw;
+    height: 2vw;
+    align-self: center;
     border: 1px solid black;
     background-color: green;
 }
@@ -62,7 +62,21 @@ h2{
 }
 
 #singleColorBox{
-    padding: 3vw;
+    padding: 0px 8vw;
     display: flex;
     flex-direction: column;
+}
+
+#altTextBox{
+    display: flex;
+    flex-direction: column;
+}
+
+#altTextBox label{
+    padding: 0px 5vw;
+    font-size: 1.2rem;
+}
+
+#altTextBox p{
+    padding: 0px 5vw;
 }
