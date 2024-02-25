@@ -16,11 +16,20 @@ AddOnSdk.ready.then(() => {
     altTextButton.addEventListener("click", async () => {
         await generateAltText();
     });
-
+    
     colorBlindButton.addEventListener("click", async () => {
         let renditions = await getRenditions();
         main(renditions[0].blob);
 
+        let originalColors = document.getElementById("originalColors"); 
+        let protonopiaColors = document.getElementById("protonopiaColors"); 
+        let deuteranopiaColors = document.getElementById("deuteranopiaColors"); 
+        let tritanopiaColors = document.getElementById("tritanopiaColors"); 
+
+        originalColors.innerHTML = "Original Colors";
+        protonopiaColors.innerHTML = "Protonopia (Red Deficient)"; 
+        deuteranopiaColors.innerHTML = "Deuteranopia (Green Deficient)"; 
+        tritanopiaColors.innerHTML = "Tritanopia (Blue Deficient)"; 
     });
 
     console.log("AddOnSDK is ready for use.");

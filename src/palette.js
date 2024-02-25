@@ -463,11 +463,19 @@ export const main = async (image) => {
         var deuteranopiaColors = palettesList.deuteranopiaList;
         var tritanopiaColors = palettesList.tritanopiaList;
 
-        paletteContrast.innerHTML = calculateAverageContrast(paletteColors);
-        protonopiaContrast.innerHTML = calculateAverageContrast(protonopiaColors);
-        deuteranopiaContrast.innerHTML = calculateAverageContrast(deuteranopiaColors);
-        tritanopiaContrast.innerHTML = calculateAverageContrast(tritanopiaColors);
-    
+        
+        paletteContrast.innerHTML = checkColorContrast(calculateAverageContrast(paletteColors));
+        protonopiaContrast.innerHTML = checkColorContrast(calculateAverageContrast(protonopiaColors));
+        deuteranopiaContrast.innerHTML = checkColorContrast(calculateAverageContrast(deuteranopiaColors));
+        tritanopiaContrast.innerHTML = checkColorContrast(calculateAverageContrast(tritanopiaColors));
+        
+        function checkColorContrast(averageContrast){
+            if(averageContrast < 4.5){
+                return "FAIL";
+            }
+            return "pass :D"; 
+        }
+
         function calculateAverageContrast(paletteColors){
             var totalContrast = 0; 
             let paletteLength = paletteColors.length; 
