@@ -47,8 +47,7 @@ h2{
 }
 
 #colorBar{
-    margin: 2vw 5vw 5vw;
-    width: 80vw;
+    margin: 2.5vw 5vw 0vw;
     height: 2vw;
     align-self: center;
     border: 1px solid black;
@@ -80,3 +79,42 @@ h2{
 #altTextBox p{
     padding: 0px 5vw;
 }
+
+#slider{
+    align-self: center;
+    margin: 0px 2vw;
+}
+
+#progressBar{
+    margin: 5vw;
+}
+
+
+#progressBar a{
+    font-weight: 900;
+    font-size: 2rem;
+    padding-left: 0;
+}
+
+.textContrast{
+    width: 15vw;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+}
+
+b{
+    text-align: center;
+}
+
+#textFlexbox{
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-end;
+}
+
+#boxTwo{
+    display: flex;
+    float: right;
+}
+
