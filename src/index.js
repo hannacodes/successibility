@@ -1,11 +1,12 @@
 import AddOnSdk from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
-import { fetchAltText, uploadImg, uploadImgByURL } from "./alt-text.js";
+import { fetchAltText, uploadImg } from "./alt-text.js";
 import { main } from "./palette.js"
 
 AddOnSdk.ready.then(() => {
     console.log("AddOnSDK is ready for use.");
     const refreshButton = document.getElementById("refresh");
     const altTextButton = document.getElementById("altTxtBtn");
+    const colorBlindButton = document.getElementById("btnLoad")
 
     grabImage();
     refreshButton.addEventListener("click", async () => {
@@ -14,6 +15,11 @@ AddOnSdk.ready.then(() => {
 
     altTextButton.addEventListener("click", async () => {
         await generateAltText();
+    });
+
+    colorBlindButton.addEventListener("click", async () => {
+        let renditions = await getRenditions();
+        main(renditions[0].blob);
     });
 
     console.log("AddOnSDK is ready for use.");
@@ -36,7 +42,7 @@ AddOnSdk.ready.then(() => {
 
     async function generateAltText() {
         let renditions = await getRenditions();
-        const dataurl = await uploadImg(renditions[0].blob)
+        const dataurl = (await uploadImg(renditions[0].blob))
         //console.log(document.getElementById("canvas").src);
         let data = await fetchAltText(dataurl);
         let text = data.captionResult
