@@ -37,20 +37,6 @@
     width: 90%;
 }
 
-#copy{
-    width: fit-content;
-    float: right;
-    margin-right: 10px;
-    font-size: 0.5em;
-}
-
-#copy:hover{
-    width: fit-content;
-    float: right;
-    margin-right: 10px;
-    font-size: 0.5em;
-    color: rgb(177, 177, 177);
-}
 .special button:disabled {
     background-color: rgb(177, 177, 177);
     border-color: rgb(177, 177, 177);
@@ -60,6 +46,31 @@
     background-color: rgb(64, 70, 202);
     cursor: pointer;
 }
+
+.pbtn button {
+    background-color: rgb(82, 88, 228);
+    border-color: rgb(82, 88, 228);
+    border-radius: 16px;
+    color: rgb(255, 255, 255);
+    font-family: sans-serif;
+    height: 32px;
+    margin-top: 0px;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-bottom: 5vw;
+    width: 90%;
+}
+
+.pbtn button:disabled {
+    background-color: rgb(177, 177, 177);
+    border-color: rgb(177, 177, 177);
+}
+
+.pbtn button:not([disabled]):hover {
+    background-color: rgb(64, 70, 202);
+    cursor: pointer;
+}
+
 
 #canvas {
     width: 85vw;
@@ -175,3 +186,27 @@ b{
    
 }
 
+#colorBlind{
+    margin: 2vw;
+    overflow-x: hidden;
+}
+
+.colors {
+    overflow-x: hidden;
+    width: 99%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.colors div{
+    width: 100%;
+    height: 50px;
+}
+
+.PASS{
+    color: green;
+}
+
+.FAIL{
+    color: #FF4F4F;
+}

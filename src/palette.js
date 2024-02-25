@@ -2,9 +2,13 @@ import { getJSON } from "./alt-text.js";
 
 const buildPalette = (colorsList) => {
     const paletteContainer = document.getElementById("palette");
+    paletteContainer.classList.add("palette")
     const protonopiaContainer = document.getElementById("protonopia")
+    protonopiaContainer.classList.add("protonopia")
     const deuteranopiaContainer = document.getElementById("deuteranopia")
+    deuteranopiaContainer.classList.add("deuternopia")
     const tritanopiaContainer = document.getElementById("tritanopia")
+    tritanopiaContainer.classList.add("tritanopia")
     //const complementaryContainer = document.getElementById("complementary");
     // reset the HTML in case you load various images
     paletteContainer.innerHTML = "";
@@ -54,22 +58,22 @@ const buildPalette = (colorsList) => {
         // create the div and text elements for both colors & append it to the document
         const colorElement = document.createElement("div");
         colorElement.style.backgroundColor = hexColor;
-        colorElement.appendChild(document.createTextNode(hexColor));
+        // colorElement.appendChild(document.createTextNode(hexColor));
         paletteContainer.appendChild(colorElement);
 
         const protonopiaElement = document.createElement("div");
         protonopiaElement.style.backgroundColor = protonopia;
-        protonopiaElement.appendChild(document.createTextNode(protonopia));
+        // protonopiaElement.appendChild(document.createTextNode(protonopia));
         protonopiaContainer.appendChild(protonopiaElement);
 
         const deuteranopiaElement = document.createElement("div");
         deuteranopiaElement.style.backgroundColor = deuteranopia;
-        deuteranopiaElement.appendChild(document.createTextNode(deuteranopia));
+        // deuteranopiaElement.appendChild(document.createTextNode(deuteranopia));
         deuteranopiaContainer.appendChild(deuteranopiaElement);
 
         const tritanopiaElement = document.createElement("div");
         tritanopiaElement.style.backgroundColor = tritanopia;
-        tritanopiaElement.appendChild(document.createTextNode(tritanopia));
+        // tritanopiaElement.appendChild(document.createTextNode(tritanopia));
         tritanopiaContainer.appendChild(tritanopiaElement);
         // true when hsl color is not black/white/grey
         //if (hslColors[i].h) {
@@ -463,17 +467,28 @@ export const main = async (image) => {
         var deuteranopiaColors = palettesList.deuteranopiaList;
         var tritanopiaColors = palettesList.tritanopiaList;
 
-        
-        paletteContrast.innerHTML = checkColorContrast(calculateAverageContrast(paletteColors));
-        protonopiaContrast.innerHTML = checkColorContrast(calculateAverageContrast(protonopiaColors));
-        deuteranopiaContrast.innerHTML = checkColorContrast(calculateAverageContrast(deuteranopiaColors));
-        tritanopiaContrast.innerHTML = checkColorContrast(calculateAverageContrast(tritanopiaColors));
+        var pf = checkColorContrast(calculateAverageContrast(paletteColors));
+        paletteContrast.innerHTML = pf;
+        paletteContrast.setAttribute("class", "");
+        paletteContrast.classList.add(pf);
+        pf = checkColorContrast(calculateAverageContrast(protonopiaColors));
+        protonopiaContrast.innerHTML = pf;
+        protonopiaContrast.setAttribute("class", "");
+        protonopiaContrast.classList.add(pf);
+        pf = checkColorContrast(calculateAverageContrast(deuteranopiaColors));
+        deuteranopiaContrast.innerHTML = pf;
+        deuteranopiaContrast.setAttribute("class", "");
+        deuteranopiaContrast.classList.add(pf)
+        pf = checkColorContrast(calculateAverageContrast(tritanopiaColors))
+        tritanopiaContrast.innerHTML = pf;
+        tritanopiaContrast.setAttribute("class", "");
+        tritanopiaContrast.classList.add(pf)
         
         function checkColorContrast(averageContrast){
-            if(averageContrast < 4.5){
+            if(averageContrast < 4){
                 return "FAIL";
             }
-            return "pass :D"; 
+            return "PASS"; 
         }
 
         function calculateAverageContrast(paletteColors){
