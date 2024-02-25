@@ -22,7 +22,7 @@
             You may use "addOnUISdk.app.ui.theme" to get the current theme and style accordingly.
         
         -->
-    <div class=".container">
+    <div class="container">
         <div id="altTextBox">
             <h2>Alt Text Generator</h2>
             <div>
@@ -48,7 +48,7 @@
                 <input type="color" id="secondColor" class="color" value="#FF0000" />
             </div>
         </div>
-        <h4 id="restext">Results:</h4>
+        <h4 id="restext">Result:</h4>
         <div id="progressBar">
             <div class="textContrast">
                 <span id="boxOne">Low Contrast</span>
@@ -57,45 +57,51 @@
             <p id="colorBar"></p>
             <div id="slider">
                 <a id="arrow"><span class="material-symbols-outlined">
-                    north
-                </span></a>
+                        north
+                    </span></a>
             </div>
         </div>
     </div>
 
     <div class="container">
-        <h2>Image</h2>
+        <h2>Color Blindness Test</h2>
+        <div id="colorBlind">
+            <span class="pbtn"><button id="btnLoad">Check Accessibility</button></span>
+            <canvas id="colorBlindCanvas" style="display:none"></canvas>
+    
+            <h3 id="originalColors">
+            </h3>
+            <div class="colors" id="palette"></div>
+            <b><p id="paletteContrast"></p></b>
+    
+            <h3 id="protonopiaColors">
+            </h3>
+            <div class="colors" id="protonopia"></div>
+            <b><p id="protonopiaContrast"></p></b>
+    
+            <h3 id="deuteranopiaColors">
+            </h3>
+            <div class="colors" id="deuteranopia"></div>
+            <b><p id="deuteranopiaContrast"></p></b>
+    
+            <h3 id="tritanopiaColors">
+            </h3>
+            <div class="colors" id="tritanopia"></div>
+            <b><p id="tritanopiaContrast"></p></b>
+        </div>
+        <!-- <img id="canvas" src="fill" alt="image" /> -->
+        <!-- <button id="refresh" disabled>Refresh</button> -->
+    
+        <!-- <input type="color" id="firstColor" />
+            <input type="color" id="secondColor" /> -->
+    </div>
+
+    <div class="container">
+        <h2>Preview</h2>
         <img id="canvas" src="fill" alt="image" />
 
         <span class="special"><button id="refresh" disabled>Reload</button></span>
     </div>
 </body>
 
-    <form action="#">
-        <input type="button" id="btnLoad" value="Get Color Palettes" />
-      </form>
-      <canvas id="colorBlindCanvas" style="display:none"></canvas>
-      
-      <h3 id="originalColors"></h2>
-      <div id="palette"></div>
-      <p id="paletteContrast"></p>
-
-      <h3 id="protonopiaColors"></h2>
-      <div id="protonopia"></div>
-      <p id="protonopiaContrast"></p>
-
-      <h3 id="deuteranopiaColors"></h2>
-      <div id="deuteranopia"></div>
-      <p id="deuteranopiaContrast"></p>
-
-      <h3 id="tritanopiaColors"></h2>
-      <div id="tritanopia"></div>
-      <p id="tritanopiaContrast"></p>
-
-    <!-- <img id="canvas" src="fill" alt="image" /> -->
-    <!-- <button id="refresh" disabled>Refresh</button> -->
-
-    <!-- <input type="color" id="firstColor" />
-    <input type="color" id="secondColor" /> -->
-  </body>
 </html>
