@@ -1,28 +1,14 @@
 import AddOnSdk from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
-import { fetchAltText, uploadImg } from "./alt-text.js";
+import { fetchAltText, uploadImg, uploadImgByURL } from "./alt-text.js";
 
 AddOnSdk.ready.then(() => {
-<<<<<<< HEAD
-  grabImage();
-
-  const clickMeButton = document.getElementById("clickMe");
-  clickMeButton.addEventListener("click", () => {
-=======
     console.log("AddOnSDK is ready for use.");
     const clickMeButton = document.getElementById("clickMe");
-    
->>>>>>> origin/main
     grabImage();
-
     clickMeButton.addEventListener("click", async () => {
         clickMeButton.innerHTML = "Clicked";
         grabImage();
-        const selectedFile = document.getElementById("myFile").files[0];
-        const url = await uploadImg(selectedFile);
-        let data = await fetchAltText(url);
-        let text = data.captionResult
-        console.log(text);
-        displayText(text.text);
+        await generateAltText();
     });
 
   console.log("AddOnSDK is ready for use.");
@@ -31,15 +17,7 @@ AddOnSdk.ready.then(() => {
 
   async function grabImage() {
     try {
-      const renditionOptions = {
-        range: AddOnSdk.constants.Range.entireDocument,
-        format: AddOnSdk.constants.RenditionFormat.png,
-        backgroundColor: 0x7faa77ff,
-      };
-      const renditions = await AddOnSdk.app.document.createRenditions(
-        renditionOptions,
-        AddOnSdk.constants.RenditionIntent.preview
-      );
+      let renditions = await getRenditions();
       renditions.forEach((rendition) => {
         const image = document.querySelector("#canvas");
         image.src = URL.createObjectURL(rendition.blob);
@@ -47,6 +25,54 @@ AddOnSdk.ready.then(() => {
     } catch (error) {
       console.log("ERROR" + error);
     }
+  }
+
+  async function generateAltText(){
+    let renditions = await getRenditions();
+      const dataurl = await uploadImg(renditions[0].blob)
+      //console.log(document.getElementById("canvas").src);
+      let data = await fetchAltText(dataurl);
+      let text = data.captionResult
+      console.log(text);
+      displayText(text.text);
+  }
+
+
+  async function getRenditions() {
+      const renditionOptions = {
+          range: AddOnSdk.constants.Range.entireDocument,
+          format: AddOnSdk.constants.RenditionFormat.png,
+          backgroundColor: 0x7faa77ff,
+      };
+      const renditions = await AddOnSdk.app.document.createRenditions(
+          renditionOptions,
+          AddOnSdk.constants.RenditionIntent.preview
+      );
+      return renditions;
+  }
+
+  async function generateAltText(){
+    let renditions = await getRenditions();
+      const dataurl = await uploadImg(renditions[0].blob)
+      //console.log(document.getElementById("canvas").src);
+      let data = await fetchAltText(dataurl);
+      let text = data.captionResult
+      console.log(text);
+      displayText(text.text);
+  }
+
+
+  async function getRenditions() {
+      const renditionOptions = {
+          range: AddOnSdk.constants.Range.entireDocument,
+          format: AddOnSdk.constants.RenditionFormat.png,
+          backgroundColor: 0x7faa77ff,
+      };
+      const renditions = await AddOnSdk.app.document.createRenditions(
+          renditionOptions,
+          AddOnSdk.constants.RenditionIntent.preview
+      );
+      return renditions;
   }
 
   var firstColor = document.querySelector("#firstColor");

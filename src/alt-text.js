@@ -35,6 +35,27 @@ export async function uploadImg(img) {
     } catch (error) {
         console.log(error);
     }
+}
 
+export async function uploadImgByURL(img) {
+    const form = new FormData();
+    //const img2 = JSON.stringify(getBase64(img));
+    //console.log(img2)
+    form.append('image', img);
+    console.log("test", img);
+    //console.log(upload(img));
+        fetch('https://api.imgbb.com/1/upload?expiration=600&key=' + IMAGE_KEY, {
+            method: 'POST',
+            body: form
+        }).then(async (response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            console.log(await response.text())
+        }).then((data) => {
+            console.log(data.data.url)
+            return data.data.url
+        })
+   
 }
 
