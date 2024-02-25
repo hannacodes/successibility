@@ -10,7 +10,6 @@
         "apiVersion": 1
       }
     ],
-    "experimentalApis": true,
     "supportsTouch": false,
     "renditionPreview": true
   },
