@@ -3,12 +3,16 @@ import { getJSON } from "./alt-text.js";
 const buildPalette = (colorsList) => {
     const paletteContainer = document.getElementById("palette");
     paletteContainer.classList.add("palette")
+    paletteContainer.style = "border: 2px solid rgb(177, 177, 177);"
     const protonopiaContainer = document.getElementById("protonopia")
     protonopiaContainer.classList.add("protonopia")
+    protonopiaContainer.style = "border: 2px solid rgb(177, 177, 177);"
     const deuteranopiaContainer = document.getElementById("deuteranopia")
     deuteranopiaContainer.classList.add("deuternopia")
+    deuteranopiaContainer.style = "border: 2px solid rgb(177, 177, 177);"
     const tritanopiaContainer = document.getElementById("tritanopia")
     tritanopiaContainer.classList.add("tritanopia")
+    tritanopiaContainer.style = "border: 2px solid rgb(177, 177, 177);"
     //const complementaryContainer = document.getElementById("complementary");
     // reset the HTML in case you load various images
     paletteContainer.innerHTML = "";
