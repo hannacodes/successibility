@@ -2,6 +2,12 @@
     "name": "successibility",
     "version": "1.0.0",
     "description": "Adobe Creative Cloud Web Add-on.",
+    "eslintConfig": {
+        "env": {
+            "browser": true,
+            "node": true
+        }
+    },
     "scripts": {
         "clean": "ccweb-add-on-scripts clean",
         "build": "ccweb-add-on-scripts build",

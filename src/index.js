@@ -1,14 +1,31 @@
 import AddOnSdk from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
-
-await AddOnSdk.ready;
+import { fetchAltText, uploadImg } from "./alt-text.js";
 
 AddOnSdk.ready.then(() => {
+<<<<<<< HEAD
   grabImage();
 
   const clickMeButton = document.getElementById("clickMe");
   clickMeButton.addEventListener("click", () => {
+=======
+    console.log("AddOnSDK is ready for use.");
+    const clickMeButton = document.getElementById("clickMe");
+    
+>>>>>>> origin/main
     grabImage();
-  });
+
+    clickMeButton.addEventListener("click", async () => {
+        clickMeButton.innerHTML = "Clicked";
+        grabImage();
+        const selectedFile = document.getElementById("myFile").files[0];
+        const url = await uploadImg(selectedFile);
+        let data = await fetchAltText(url);
+        let text = data.captionResult
+        console.log(text);
+        displayText(text.text);
+    });
+
+  console.log("AddOnSDK is ready for use.");
 
   clickMeButton.disabled = false;
 
@@ -102,3 +119,8 @@ AddOnSdk.ready.then(() => {
     return contrast;
   }
 });
+
+function displayText(text){
+    const txt = document.getElementById("alt-text").innerText = text;
+}
+
