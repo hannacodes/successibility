@@ -1,9 +1,11 @@
 import AddOnSdk from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
 import { fetchAltText, uploadImg } from "./alt-text.js";
+import { main } from "./palette.js"
 
 AddOnSdk.ready.then(() => {
     console.log("AddOnSDK is ready for use.");
     const clickMeButton = document.getElementById("clickMe");
+    const loadButton = document.getElementById("btnLoad")
     
     grabImage();
 
@@ -17,6 +19,12 @@ AddOnSdk.ready.then(() => {
         console.log(text);
         displayText(text.text);
     });
+
+    loadButton.addEventListener("click", async () => {
+        main();
+    });
+
+
 
   console.log("AddOnSDK is ready for use.");
 
